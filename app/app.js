@@ -3,6 +3,11 @@
 // Production-ready, bug-free, Spotify-level quality
 // ============================================
 
+console.log('🎵 Aurio app.js loaded');
+console.log('🔥 Firebase available:', typeof firebase !== 'undefined');
+console.log('🔑 Auth available:', typeof auth !== 'undefined');
+console.log('💾 DB available:', typeof db !== 'undefined');
+
 // === GLOBAL STATE ===
 const state = {
   currentUser: null,
