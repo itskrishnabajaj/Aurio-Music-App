@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurio Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
+</head>
+<body>
+  
+  <!-- Login Screen -->
+  <div id="login-screen" class="screen">
+    <div class="login-container">
+      <div class="logo-container">
+        <svg class="logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#7ee787;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#ffd93d;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#ff6bcb;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <!-- Headphone Arc -->
+          <path d="M 150 150 Q 100 200 100 280 L 100 350" stroke="url(#gradient1)" stroke-width="30" fill="none" stroke-linecap="round"/>
+          <path d="M 362 150 Q 412 200 412 280 L 412 350" stroke="url(#gradient1)" stroke-width="30" fill="none" stroke-linecap="round"/>
+          <!-- Headphone Cups -->
+          <circle cx="100" cy="370" r="40" fill="url(#gradient1)" opacity="0.3"/>
+          <circle cx="412" cy="370" r="40" fill="url(#gradient1)" opacity="0.3"/>
+          <!-- Waveform Bars -->
+          <rect x="200" y="280" width="20" height="60" rx="10" fill="url(#gradient1)"/>
+          <rect x="230" y="250" width="20" height="90" rx="10" fill="url(#gradient1)"/>
+          <rect x="260" y="220" width="20" height="120" rx="10" fill="url(#gradient1)"/>
+          <rect x="290" y="200" width="20" height="140" rx="10" fill="url(#gradient1)"/>
+          <rect x="200" y="280" width="20" height="60" rx="10" fill="url(#gradient1)" transform="scale(-1,1) translate(-512,0)"/>
+          <rect x="230" y="250" width="20" height="90" rx="10" fill="url(#gradient1)" transform="scale(-1,1) translate(-512,0)"/>
+          <rect x="260" y="220" width="20" height="120" rx="10" fill="url(#gradient1)" transform="scale(-1,1) translate(-512,0)"/>
+        </svg>
+      </div>
+      <h1>Aurio Admin</h1>
+      <p>Premium Music Streaming</p>
+      
+      <div class="login-form">
+        <input type="email" id="admin-email" placeholder="Admin Email" autocomplete="email">
+        <input type="password" id="admin-password" placeholder="Password" autocomplete="current-password">
+        <button id="login-btn" class="btn-primary">
+          <span>Sign In</span>
+          <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+        <div id="login-error" class="error-message"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard -->
+  <div id="admin-screen" class="screen hidden">
+    
+    <!-- Header -->
+    <header class="admin-header">
+      <div class="header-left">
+        <svg class="header-logo" viewBox="0 0 40 40">
+          <defs>
+            <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#7ee787"/>
+              <stop offset="100%" style="stop-color:#ff6bcb"/>
+            </linearGradient>
+          </defs>
+          <circle cx="20" cy="20" r="18" fill="url(#headerGradient)" opacity="0.2"/>
+          <rect x="12" y="18" width="3" height="8" rx="1.5" fill="url(#headerGradient)"/>
+          <rect x="18" y="14" width="3" height="12" rx="1.5" fill="url(#headerGradient)"/>
+          <rect x="24" y="10" width="3" height="16" rx="1.5" fill="url(#headerGradient)"/>
+        </svg>
+        <div>
+          <h1>Aurio</h1>
+          <span id="admin-email-display" class="admin-email"></span>
+        </div>
+      </div>
+      <button id="logout-btn" class="btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+        Logout
+      </button>
+    </header>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+      
+      <!-- Upload Section -->
+      <section class="upload-section">
+        <div class="section-header">
+          <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+            </svg>
+            Upload New Song
+          </h2>
+        </div>
+        
+        <div class="upload-form">
+          
+          <!-- Song Details -->
+          <div class="form-row">
+            <div class="form-group">
+              <label>Song Title <span class="required">*</span></label>
+              <input type="text" id="song-title" placeholder="Enter song title" required>
+            </div>
+
+            <div class="form-group">
+              <label>Artist <span class="required">*</span></label>
+              <input type="text" id="song-artist" placeholder="Enter artist name" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Album</label>
+              <input type="text" id="song-album" placeholder="Enter album name">
+            </div>
+
+            <div class="form-group">
+              <label>Duration (seconds) <span class="required">*</span></label>
+              <input type="number" id="song-duration" placeholder="e.g., 180" min="1" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Genre <span class="required">*</span></label>
+              <select id="song-genre" required>
+                <option value="">Select genre</option>
+                <option value="pop">Pop</option>
+                <option value="rock">Rock</option>
+                <option value="hip-hop">Hip Hop</option>
+                <option value="electronic">Electronic</option>
+                <option value="jazz">Jazz</option>
+                <option value="classical">Classical</option>
+                <option value="indie">Indie</option>
+                <option value="r&b">R&B</option>
+                <option value="country">Country</option>
+                <option value="latin">Latin</option>
+                <option value="metal">Metal</option>
+                <option value="folk">Folk</option>
+                <option value="blues">Blues</option>
+                <option value="reggae">Reggae</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Mood <span class="required">*</span></label>
+              <select id="song-mood" required>
+                <option value="">Select mood</option>
+                <option value="upbeat">Upbeat</option>
+                <option value="chill">Chill</option>
+                <option value="energetic">Energetic</option>
+                <option value="melancholic">Melancholic</option>
+                <option value="romantic">Romantic</option>
+                <option value="ambient">Ambient</option>
+                <option value="aggressive">Aggressive</option>
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="calm">Calm</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- File URLs (Since Storage requires billing) -->
+          <div class="form-group">
+            <label>Audio File URL <span class="required">*</span></label>
+            <input type="url" id="audio-url" placeholder="https://example.com/song.mp3" required>
+            <small class="helper-text">Direct link to MP3 file (must be publicly accessible)</small>
+          </div>
+
+          <div class="form-group">
+            <label>Album Artwork URL <span class="required">*</span></label>
+            <input type="url" id="artwork-url" placeholder="https://example.com/artwork.jpg" required>
+            <small class="helper-text">Direct link to image (JPG/PNG, recommended 500x500px)</small>
+          </div>
+
+          <!-- Artwork Preview -->
+          <div id="artwork-preview" class="artwork-preview hidden">
+            <img id="artwork-preview-img" src="" alt="Preview">
+          </div>
+
+          <!-- Submit Button -->
+          <button id="upload-btn" class="btn-upload">
+            <span id="upload-btn-text">Add Song to Library</span>
+            <span id="upload-spinner" class="spinner hidden"></span>
+          </button>
+
+          <div id="upload-status" class="status-message"></div>
+        </div>
+      </section>
+
+      <!-- Songs List -->
+      <section class="songs-section">
+        <div class="section-header">
+          <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18V5l12-2v13M9 18c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm12-2c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/>
+            </svg>
+            Song Library
+            <span class="count-badge" id="songs-count">0</span>
+          </h2>
+          <button id="refresh-btn" class="btn-icon-only">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="search-box">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="search-input" placeholder="Search songs, artists, albums...">
+        </div>
+
+        <div id="songs-list" class="songs-list">
+          <div class="loading">
+            <div class="loading-spinner"></div>
+            <p>Loading songs...</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+  
+  <!-- Firebase Config -->
+  <script src="../shared/firebase-config.js"></script>
+  
+  <!-- Admin App -->
+  <script src="admin.js"></script>
+</body>
+</html>
