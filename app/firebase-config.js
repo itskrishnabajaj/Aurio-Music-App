@@ -14,12 +14,12 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// Export Firebase services
+// Firebase services
 const auth = firebase.auth();
 const db = firebase.firestore();
 const storage = firebase.storage();
 
-// Enable offline persistence
+// Enable offline persistence for better performance
 db.enablePersistence({ synchronizeTabs: true }).catch((err) => {
   if (err.code === 'failed-precondition') {
     console.warn('Multiple tabs open, persistence enabled in first tab only');
