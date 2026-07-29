@@ -1,8 +1,28 @@
-# 2Stepz Fitness & Dance Studio — Website Discovery & Strategy Blueprint
+# 2Stepz Fitness & Dance Studio — Website + Strategy Blueprint
 
 **Client:** 2Stepz Fitness & Dance Studio, Gokulpeth, Nagpur, Maharashtra
-**Deliverable:** Research-first consulting report — the complete blueprint for what could become the best fitness studio website in Nagpur.
-**Scope:** Strategy only. No code, no wireframes, no mockups. Everything here is grounded in publicly available research; anything that could not be independently verified is explicitly flagged.
+**Deliverables:** (1) a research-first consulting report — the blueprint below — and (2) the production website built from it, at the root of this repo.
+
+---
+
+## The Website
+
+A cinematic, mobile-first, single-page experience (`index.html` + `assets/`) built with zero frameworks and zero build step — hand-written HTML, CSS and vanilla JavaScript, deployable as-is on Netlify (`netlify.toml` included) or any static host.
+
+**Experience highlights:** kinetic hero typography with staggered entrance · tilted format marquee · scroll-driven text-fill manifesto · horizontal snap rails for classes and member voices · founder feature with parallax · rotating Power Garba disc · staggered "moments" wall · day-tabbed schedule · membership tiers · animated FAQ · sticky WhatsApp/call/trial dock that hides while scrolling down and steps aside at the final CTA. All motion is transform/opacity-only, `prefers-reduced-motion` aware, and IntersectionObserver-driven — no animation libraries.
+
+**Before launch, the owner must update** the top of `assets/js/main.js`:
+
+- `CONTACT.WHATSAPP` / `CONTACT.PHONE` — while these contain placeholders, every chat CTA safely falls back to Instagram and call buttons stay hidden.
+- `SCHEDULE` — the weekly batch grid ships with representative timings that must be replaced with the studio's real ones.
+
+Also re-verify the public figures quoted on the page (4.6★, 88+ reviews) and swap the graphic portrait/moment cards for real photography when the shoot from the blueprint (§12) happens — the layout is designed to accept it.
+
+---
+
+## The Research Blueprint
+
+**Scope:** strategy grounded in publicly available research; anything that could not be independently verified is explicitly flagged.
 
 ---
 
