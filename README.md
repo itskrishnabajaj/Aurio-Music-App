@@ -7,16 +7,24 @@
 
 ## The Website
 
-A cinematic, mobile-first, single-page experience (`index.html` + `assets/`) built with zero frameworks and zero build step — hand-written HTML, CSS and vanilla JavaScript, deployable as-is on Netlify (`netlify.toml` included) or any static host.
+A vibrant, mobile-first, single-page experience built with **Next.js 15 (App Router)** for deployment on **Vercel**. Hand-written vanilla CSS design system (no Tailwind, no animation libraries), Server Components throughout with client islands only where interaction lives (`Nav`, `Schedule`, `Fx`), self-hosted fonts via `next/font`, fully static prerender.
 
-**Experience highlights:** kinetic hero typography with staggered entrance · tilted format marquee · scroll-driven text-fill manifesto · horizontal snap rails for classes and member voices · founder feature with parallax · rotating Power Garba disc · staggered "moments" wall · day-tabbed schedule · membership tiers · animated FAQ · sticky WhatsApp/call/trial dock that hides while scrolling down and steps aside at the final CTA. All motion is transform/opacity-only, `prefers-reduced-motion` aware, and IntersectionObserver-driven — no animation libraries.
+```bash
+npm install
+npm run dev      # local development
+npm run build    # production build (static prerender)
+```
 
-**Before launch, the owner must update** the top of `assets/js/main.js`:
+Deploy: push to Vercel — zero config needed.
 
-- `CONTACT.WHATSAPP` / `CONTACT.PHONE` — while these contain placeholders, every chat CTA safely falls back to Instagram and call buttons stay hidden.
-- `SCHEDULE` — the weekly batch grid ships with representative timings that must be replaced with the studio's real ones.
+**Design system:** warm-white ground with blush/peach/lilac/mint section washes, raspberry→tangerine signature gradient, deep-plum ink, 8px spacing scale, curved section bands, floating gradient blobs, Fraunces + Manrope. **Experience:** kinetic hero, tilted gradient marquee, scroll-fill manifesto, colorful stat tiles, snap-scroll class/testimonial rails, warm founder band, rotating Power Garba disc, moments wall, day-tabbed schedule, membership tiers, animated FAQ, gradient finale, and a sticky WhatsApp/call/trial dock. All motion is transform/opacity-only and `prefers-reduced-motion` aware.
 
-Also re-verify the public figures quoted on the page (4.6★, 88+ reviews) and swap the graphic portrait/moment cards for real photography when the shoot from the blueprint (§12) happens — the layout is designed to accept it.
+**Before launch, the owner must update** `lib/config.ts`:
+
+- `CONTACT.WHATSAPP` / `CONTACT.PHONE` — while these contain placeholders, every chat CTA safely falls back to Instagram and call buttons are omitted.
+- `SCHEDULE` — ships with representative timings that must be replaced with the studio's real weekly grid.
+
+Also re-verify the public figures quoted on the page (4.6★, 88+ reviews) and swap the graphic portrait/moment cards for real photography when the shoot from the blueprint (§12) happens — the layouts are designed to accept it.
 
 ---
 
