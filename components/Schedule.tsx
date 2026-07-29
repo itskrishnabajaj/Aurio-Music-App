@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { SCHEDULE, waLink, HAS_WHATSAPP } from "@/lib/config";
+import { FieldPlaceholder } from "@/components/Placeholder";
+import { SCHEDULE, waLink, HAS_WHATSAPP, HAS_HOURS } from "@/lib/config";
 
 const DAYS = Object.keys(SCHEDULE);
 const ext = !HAS_WHATSAPP ? { target: "_blank", rel: "noopener" } : {};
@@ -81,21 +82,23 @@ export default function Schedule() {
               Sunday is rest day — the music comes back Monday morning.
             </p>
           ) : (
-            rows.map((r) => (
-              <div className="schedule__row" key={`${day}-${r.time}-${r.name}`}>
+            rows.map((r, i) => (
+              <div className="schedule__row" key={`${day}-${r.name}-${i}`}>
                 <span className={`schedule__hue schedule__hue--${r.hue}`} aria-hidden="true"></span>
-                <span className="schedule__time">{r.time}</span>
+                <span className="schedule__time">
+                  {HAS_HOURS ? r.time : <FieldPlaceholder label="Batch timing" icon="clock" />}
+                </span>
                 <span className="schedule__what">
                   <b>{r.name}</b>
                   <small>{r.note}</small>
                 </span>
                 <a
                   className="schedule__book"
-                  href={waLink(`Hi! Is there space in the ${day} ${r.time} ${r.name} batch?`)}
-                  aria-label={`Book the ${day} ${r.time} ${r.name} batch on WhatsApp`}
+                  href={waLink(`Hi! Is there space in the ${day} ${r.name} batch?`)}
+                  aria-label={`Ask about the ${day} ${r.name} batch on WhatsApp`}
                   {...ext}
                 >
-                  Book this batch →
+                  Ask about this batch →
                 </a>
               </div>
             ))
@@ -103,9 +106,10 @@ export default function Schedule() {
         </div>
       </div>
       <p className="schedule__note reveal">
-        Batch timings can shift with the season — confirm today’s slots on{" "}
-        <a href={waLink("Hi! Can you confirm today's batch timings?")} {...ext}>
-          WhatsApp
+        These are the formats that run each week. Exact batch timings will be published here once
+        confirmed — until then,{" "}
+        <a href={waLink("Hi! Can you share this week's batch timings?")} {...ext}>
+          ask us on WhatsApp
         </a>
         .
       </p>

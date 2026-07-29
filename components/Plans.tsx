@@ -1,3 +1,4 @@
+import { FieldPlaceholder } from "@/components/Placeholder";
 import { waLink, HAS_WHATSAPP } from "@/lib/config";
 
 const ext = !HAS_WHATSAPP ? { target: "_blank", rel: "noopener" } : {};
@@ -18,6 +19,9 @@ export default function Plans() {
         <article className="plan reveal">
           <h3>Monthly</h3>
           <p className="plan__for">Dip your toes in. Perfect after a trial class you didn’t want to end.</p>
+          <p className="plan__price">
+            <FieldPlaceholder label="Pricing placeholder" />
+          </p>
           <ul>
             <li>All group formats included</li>
             <li>Morning &amp; evening batches</li>
@@ -35,6 +39,9 @@ export default function Plans() {
           <span className="plan__flag">Most loved</span>
           <h3>Quarterly</h3>
           <p className="plan__for">Twelve weeks — exactly how long real transformations take to show.</p>
+          <p className="plan__price">
+            <FieldPlaceholder label="Pricing placeholder" />
+          </p>
           <ul>
             <li>All group formats included</li>
             <li>Priority in festival batches</li>
@@ -52,6 +59,9 @@ export default function Plans() {
         <article className="plan reveal">
           <h3>Annual</h3>
           <p className="plan__for">For the ones who know this is their place now. The circle’s inner ring.</p>
+          <p className="plan__price">
+            <FieldPlaceholder label="Pricing placeholder" />
+          </p>
           <ul>
             <li>Everything in Quarterly</li>
             <li>Free entry to studio events</li>

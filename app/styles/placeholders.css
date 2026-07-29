@@ -1,0 +1,200 @@
+/* ============================================================
+   Placeholder surfaces — designed slots for assets still to come.
+   Neutral by intent: they must read as considered, never as broken.
+   ============================================================ */
+
+.ph {
+  --ph-line: rgba(42, 26, 51, 0.2);
+  --ph-ink: rgba(42, 26, 51, 0.62);
+  --ph-fill: rgba(255, 255, 255, 0.5);
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* ---------------------------------------------- media / video */
+.ph--media {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--s2);
+  width: 100%;
+  aspect-ratio: var(--ratio, 4 / 5);
+  padding: var(--s4) var(--s3);
+  text-align: center;
+  border-radius: var(--r-card);
+  border: 1.5px dashed var(--ph-line);
+  background:
+    radial-gradient(70% 60% at 30% 25%, rgba(42, 26, 51, 0.05), transparent 70%),
+    radial-gradient(60% 55% at 78% 80%, rgba(42, 26, 51, 0.04), transparent 70%),
+    var(--ph-fill);
+  color: var(--ph-ink);
+  overflow: clip;
+  transition: transform var(--t-base) var(--ease-out),
+              border-color var(--t-base) var(--ease-soft),
+              box-shadow var(--t-base) var(--ease-out);
+}
+@media (hover: hover) {
+  .ph--media:hover {
+    transform: translateY(-4px);
+    border-color: rgba(42, 26, 51, 0.34);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+.ph__badge {
+  position: absolute; top: var(--s2); left: var(--s2);
+  font-size: 0.58rem; font-weight: 800;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ph-ink);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--ph-line);
+  padding: 5px 10px; border-radius: 999px;
+  line-height: 1;
+}
+
+.ph__glyph {
+  width: 28px; height: 28px;
+  fill: none; stroke: currentColor;
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+  opacity: 0.66;
+}
+
+.ph__label {
+  overflow-wrap: break-word;
+  font-size: 0.86rem; font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--ph-ink);
+  line-height: 1.45;
+  max-width: 22rem;
+}
+.ph__hint {
+  display: block; margin-top: 6px;
+  font-size: 0.76rem; font-weight: 600;
+  color: rgba(42, 26, 51, 0.46);
+  line-height: 1.5;
+}
+
+.ph--video .ph__play {
+  display: grid; place-items: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1.5px solid var(--ph-line);
+  box-shadow: var(--shadow-card);
+}
+.ph--video .ph__play svg {
+  width: 26px; height: 26px;
+  fill: var(--ph-ink); stroke: none;
+  margin-left: 2px;
+}
+
+/* ---------------------------------------------- avatar */
+.ph--avatar {
+  display: grid; place-items: center;
+  flex: 0 0 auto;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px dashed var(--ph-line);
+  background: var(--ph-fill);
+  color: var(--ph-ink);
+}
+.ph--avatar .ph__glyph { width: 20px; height: 20px; }
+
+/* ---------------------------------------------- inline field */
+.ph--field {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1.5px dashed var(--ph-line);
+  background: var(--ph-fill);
+  color: var(--ph-ink);
+  font-size: 0.78rem; font-weight: 800;
+  letter-spacing: 0.02em; line-height: 1.4;
+  white-space: nowrap;
+}
+.ph--field .ph__glyph { width: 15px; height: 15px; opacity: 0.7; }
+
+/* on the plum and gradient bands the same chip inverts */
+.ph--on-dark {
+  --ph-line: rgba(255, 255, 255, 0.46);
+  --ph-ink: #fff;
+  --ph-fill: rgba(34, 6, 20, 0.34);
+}
+.ph--on-dark .ph__badge {
+  background: rgba(34, 6, 20, 0.52);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.42);
+}
+.ph--on-dark .ph__label { color: #fff; }
+.ph--on-dark .ph__hint { color: rgba(255, 255, 255, 0.86); }
+
+/* ---------------------------------------------- gallery */
+.gallery { padding: var(--sec-top) var(--pad-x) var(--sec-bottom); }
+.gallery__grid {
+  max-width: var(--wrap); margin-inline: auto;
+  display: grid; gap: var(--s2);
+  grid-template-columns: 1fr;
+}
+.gallery__grid > * { min-width: 0; }
+.gallery__reel { grid-column: 1 / -1; }
+
+@media (max-width: 479px) {
+  .gallery__grid .ph--media { aspect-ratio: 16 / 10; padding: var(--s3) var(--s2); }
+  .gallery__grid .ph--media:not(.ph--video) .ph__hint { display: none; }
+}
+@media (min-width: 480px) {
+  .gallery__grid { grid-template-columns: repeat(2, 1fr); }
+}
+.gallery__note {
+  max-width: var(--wrap); margin: var(--s5) auto 0;
+  font-size: 0.92rem; color: var(--ink-soft);
+}
+
+@media (min-width: 720px) {
+  .gallery__grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery__reel { grid-column: span 2; }
+}
+
+/* ---------------------------------------------- placeholder-bearing layouts */
+.founder__portrait.ph--media {
+  width: min(240px, 56vw);
+  padding: var(--s3) var(--s2);
+  border-radius: var(--r-card);
+}
+.founder__portrait .ph__label { font-size: 0.8rem; }
+
+.voice__by {
+  display: flex; align-items: center; gap: var(--s2);
+  margin-top: auto; padding-top: var(--s1);
+}
+.voice__by > span { display: flex; flex-direction: column; gap: 2px; }
+.voice__by small {
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: none; color: var(--ink-mute);
+}
+
+.schedule__time .ph--field { font-size: 0.72rem; padding: 4px 10px; }
+
+.plan__price { margin-bottom: var(--s3); }
+
+.visit__pending { display: flex; flex-wrap: wrap; gap: var(--s1); }
+.visit__map { margin-top: var(--s6); }
+
+.footer__social { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); }
+.footer__social a {
+  color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 700; font-size: 0.9rem;
+  min-height: 44px; display: inline-flex; align-items: center;
+  transition: color var(--t-fast) var(--ease-soft);
+}
+.footer__social a:hover { color: var(--tang); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ph--media { transition-duration: 150ms !important; }
+}
+
+/* the timing chip widens the middle column, so narrow screens stack the row */
+.schedule__row {
+  grid-template-columns: 12px 1fr;
+  grid-template-areas:
+    "hue time"
+    ".   what"
+    ".   book";
+  row-gap: 6px;
+}
+.schedule__book { justify-self: start; }

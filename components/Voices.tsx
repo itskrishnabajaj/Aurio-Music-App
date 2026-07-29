@@ -1,5 +1,6 @@
 import Rail from "@/components/Rail";
-import { CONTACT } from "@/lib/config";
+import { AvatarPlaceholder } from "@/components/Placeholder";
+import { VERIFIED } from "@/lib/config";
 
 const QUOTES = [
   "The classes are so much fun that sticking to a routine stopped feeling like effort. I look forward to it all day.",
@@ -27,12 +28,18 @@ export default function Voices() {
               ★★★★★
             </div>
             <blockquote>{q}</blockquote>
-            <figcaption>Member review · Justdial</figcaption>
+            <figcaption className="voice__by">
+              <AvatarPlaceholder label="Member photo" />
+              <span>
+                Member review · Justdial
+                <small>Member photo placeholder</small>
+              </span>
+            </figcaption>
           </figure>
         ))}
       </Rail>
       <p className="voices__link reveal">
-        <a className="link" href={CONTACT.JUSTDIAL} target="_blank" rel="noopener">
+        <a className="link" href={VERIFIED.JUSTDIAL} target="_blank" rel="noopener">
           Read all 88+ reviews <i aria-hidden="true">↗</i>
         </a>
       </p>

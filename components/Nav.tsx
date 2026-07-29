@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { waLink, CONTACT, HAS_WHATSAPP } from "@/lib/config";
+import { waLink, VERIFIED, HAS_WHATSAPP } from "@/lib/config";
 
 const LINKS = [
   { href: "#story", label: "Story" },
@@ -9,6 +9,7 @@ const LINKS = [
   { href: "#schedule", label: "Schedule" },
   { href: "#membership", label: "Membership" },
   { href: "#moments", label: "Moments" },
+  { href: "#gallery", label: "Gallery" },
   { href: "#visit", label: "Visit us" },
 ];
 
@@ -166,7 +167,7 @@ export default function Nav() {
           <a href={waLink()} {...ext}>
             WhatsApp us
           </a>
-          <a href={CONTACT.INSTAGRAM} rel="noopener" target="_blank">
+          <a href={VERIFIED.INSTAGRAM} rel="noopener" target="_blank">
             Instagram ↗
           </a>
         </div>

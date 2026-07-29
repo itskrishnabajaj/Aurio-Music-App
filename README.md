@@ -1,93 +1,66 @@
-# 2Stepz Fitness & Dance Studio — Website + Strategy Blueprint
+# 2Stepz Fitness & Dance Studio — Website
 
-**Client:** 2Stepz Fitness & Dance Studio, Gokulpeth, Nagpur, Maharashtra
-**Deliverables:** (1) a research-first consulting report — the blueprint below — and (2) the production website built from it, at the root of this repo.
-
----
-
-## The Website
-
-A vibrant, mobile-first, single-page experience built with **Next.js 15 (App Router)** for deployment on **Vercel**. Hand-written vanilla CSS design system (no Tailwind, no animation libraries), Server Components throughout with client islands only where interaction lives (`Nav`, `Schedule`, `Fx`), self-hosted fonts via `next/font`, fully static prerender.
+A custom website for **2Stepz Fitness & Dance Studio**, Gokulpeth, Nagpur — built on Next.js 15 (App Router) and ready to deploy on Vercel.
 
 ```bash
 npm install
 npm run dev      # local development
-npm run build    # production build (static prerender)
+npm run build    # production build (fully static prerender)
 ```
 
-Deploy: push to Vercel — zero config needed.
+Deploy: push to Vercel — zero configuration required.
 
-**Stylesheet architecture** — `app/globals.css` is an entry point that imports `app/styles/` in cascade order:
+---
+
+## Handover checklist
+
+The site is complete and branded. Everything below is information the studio has not supplied yet; each one currently renders as a labelled placeholder in its final position, so nothing needs redesigning when the real content arrives.
+
+Open **`lib/config.ts`** and fill in the `PENDING` block — the placeholders disappear automatically as each value is added.
+
+| # | Needed from the studio | Where it appears |
+|---|------------------------|------------------|
+| 1 | WhatsApp number (digits, country code first) | Every "Book a trial" action, the dock, schedule enquiries |
+| 2 | Phone number | Visit section, dock call button |
+| 3 | Email address | Visit section |
+| 4 | Business hours + weekly batch timings | Visit section, Schedule (add `time` to each entry in `SCHEDULE`) |
+| 5 | Membership pricing for all three tiers | Membership cards |
+| 6 | Founder portrait | Founder section |
+| 7 | Studio photography — dance session, workout floor, reception, group class, celebration event | Gallery |
+| 8 | Studio reel or walkthrough video | Gallery |
+| 9 | Member photos for testimonials | Testimonial avatars |
+| 10 | Google Maps embed URL | Visit section |
+| 11 | YouTube channel | Footer |
+| 12 | Parking information | Visit section |
+| 13 | External booking/registration link, if one is used | Optional, `PENDING.BOOKING_URL` |
+
+Already live and verified: studio name, address, founder story and awards, class formats, timeline milestones, 4.6★ / 88+ review count, Instagram, Facebook and Justdial links.
+
+**Until a WhatsApp number is added**, every chat action safely falls back to Instagram DMs and call buttons are hidden, so no call to action can dead-end during a demo.
+
+---
+
+## Architecture
+
+**Stylesheet** — `app/globals.css` is an entry point that imports `app/styles/` in cascade order:
 
 | File | Holds |
 |------|-------|
-| `tokens.css` | Every colour, type size, line-height, space, radius, shadow and duration. Nothing downstream introduces a raw value. |
-| `base.css` | Reset, document, a11y primitives, the ambient light layer, `.band` rhythm |
+| `tokens.css` | Every colour, type size, line-height, space, radius, shadow and duration |
+| `base.css` | Reset, document, a11y primitives, ambient light layer, `.band` rhythm |
 | `components.css` | Buttons, nav, menu, carousel, dock, section heads |
 | `sections.css` | Each section in narrative order |
+| `placeholders.css` | Placeholder surfaces and the layouts that host them |
 | `responsive.css` | Breakpoints and `prefers-reduced-motion` |
 
-**Design system:** warm-white ground with blush/peach/lilac/mint washes, deep-plum ink, an 8px spacing scale, curved bands, Fraunces + Manrope. Two gradients by design: `--grad` carries text (both stops dark enough for WCAG AA), `--grad-warm` keeps the pink→amber signature for decorative surfaces that never carry text.
+**Components** are React Server Components by default. Only four ship JavaScript: `Nav` (menu, focus trap, shrink), `Rail` (carousel physics), `Schedule` (day tabs), and `Fx` (scroll orchestration). First Load JS: **109 kB**.
 
-**Experience:** kinetic hero over a scroll-linked ambient light layer, a physics carousel (momentum, damped-spring snap, rubber-band edges, axis-locked so it never eats page scroll, native fallback without JS), scroll-fill manifesto, animated stat tiles, an illuminating vertical timeline, day-tabbed schedule, membership tiers, and a sticky WhatsApp/call/trial dock. All motion is transform/opacity-only, GPU-composited and `prefers-reduced-motion` aware.
+**Design system.** Warm-white ground with blush/peach/lilac/mint washes, deep-plum ink, an 8px spacing scale, Fraunces + Manrope. Two gradients by design: `--grad` carries text and clears WCAG AA at both stops; `--grad-warm` keeps the pink→amber signature for decorative surfaces that never carry text.
 
-**Before launch, the owner must update** `lib/config.ts`:
-
-- `CONTACT.WHATSAPP` / `CONTACT.PHONE` — while these contain placeholders, every chat CTA safely falls back to Instagram and call buttons are omitted.
-- `SCHEDULE` — ships with representative timings that must be replaced with the studio's real weekly grid.
-
-Also re-verify the public figures quoted on the page (4.6★, 88+ reviews) and swap the graphic portrait/moment cards for real photography when the shoot from the blueprint (§12) happens — the layouts are designed to accept it.
+**Experience.** Kinetic hero over a scroll-linked ambient layer; a physics carousel with momentum, damped-spring snap, rubber-band edges and an axis lock so it never swallows page scroll (and a native scroll-snap fallback without JavaScript); scroll-fill manifesto; animated counters; an illuminating vertical timeline; day-tabbed schedule; sticky WhatsApp/call/trial dock. All motion is transform/opacity only, GPU-composited, and honours `prefers-reduced-motion`.
 
 ---
 
-## The Research Blueprint
+## Internal
 
-**Scope:** strategy grounded in publicly available research; anything that could not be independently verified is explicitly flagged.
-
----
-
-## Executive Summary (TL;DR)
-
-2Stepz is a **founder-led, women-centric dance-fitness studio** with a decade of operating history (est. 2015), a **4.6/5 public rating**, a charismatic and award-winning founder (Madhumita Gubre — Mrs Fit India 2022), and a class mix nobody else in Nagpur matches (Zumba, Power Garba, Bokwa, folk fitness, Pilates, TRX, yoga). Its single biggest digital weakness is simple: **it has no website**. Its entire online presence lives on Justdial, a ~1.6K-follower Instagram, and Facebook — none of which it owns or controls.
-
-The recommended play is **not** a generic gym website. It is a **warm, energetic, boutique-premium, founder-forward site** built mobile-first (90 %+ of local traffic), engineered around three conversion actions — **WhatsApp, phone call, and trial-class booking** — and structured to dominate local search for "Zumba classes in Nagpur," "dance fitness Gokulpeth," and the women's-fitness intent cluster that competitors underserve.
-
-Full reasoning, evidence, and the prioritized roadmap are in the report below.
-
----
-
-## Report Contents
-
-| # | Section | Covers |
-|---|---------|--------|
-| 01 | [Executive Summary](report/01-executive-summary.md) | Findings, thesis, headline recommendations |
-| 02 | [Business Audit](report/02-business-audit.md) | Positioning, services, audience, strengths, weaknesses, USPs |
-| 03 | [Google Business Profile Audit](report/03-google-business-audit.md) | Listing audit, review insights, gaps, action checklist |
-| 04 | [Social Media Audit](report/04-social-media-audit.md) | Instagram, Facebook, YouTube — strengths, gaps, voice |
-| 05 | [Competitor Analysis](report/05-competitor-analysis.md) | Global premium references + the Nagpur landscape + how to win |
-| 06 | [SEO Strategy](report/06-seo-strategy.md) | Keyword map, local SEO, GBP optimization, content plan |
-| 07 | [Website Strategy](report/07-website-strategy.md) | What the site should *feel* like, and why |
-| 08 | [UX Strategy](report/08-ux-strategy.md) | The ideal customer journey, step by step |
-| 09 | [Information Architecture](report/09-information-architecture.md) | Every page: purpose, audience, goal, sections, CTAs |
-| 10 | [Content Strategy](report/10-content-strategy.md) | Page-by-page content recommendations |
-| 11 | [Mobile-First Strategy](report/11-mobile-first-strategy.md) | Navigation, touch, performance, accessibility |
-| 12 | [Visual Direction](report/12-visual-direction.md) | Palette, typography, photography, shape language |
-| 13 | [Animation Strategy](report/13-animation-strategy.md) | Cinematic but performance-safe motion |
-| 14 | [Conversion Strategy](report/14-conversion-strategy.md) | Sticky CTAs, WhatsApp, trust, urgency, lead gen |
-| 15 | [Roadmap & Final Recommendations](report/15-roadmap.md) | Weaknesses, opportunities, prioritized build plan |
-
----
-
-## Research Sources
-
-Primary public sources used across this report:
-
-- [Justdial listing — 2Stepz Fitness & Dance Studio, Gokulpeth](https://www.justdial.com/Nagpur/2Stepz-Fitness-Dance-Studio-Near-Times-Of-India-Gokulpeth/0712PX712-X712-160112122546-L2C3_BZDET)
-- [Instagram — @2stepzfitness](https://www.instagram.com/2stepzfitness/) and [@madhumitagubre_2stepzfitness](https://www.instagram.com/madhumitagubre_2stepzfitness/)
-- [Facebook — 2 STEPZ Fitness & Dance Studio](https://www.facebook.com/2stepzfitness/)
-- [The Live Nagpur — 4th anniversary coverage](https://thelivenagpur.com/2019/08/13/2stepz-fitness-studio-completes-4-glorious-years-with-a-bash/) · [Power Garba masterclass](https://thelivenagpur.com/2019/06/16/power-garba-at-2-stepsz/) · [Mrs Fit India 2022](https://thelivenagpur.com/2022/06/20/madhumita-gubre-crowned-as-mrs-fit-india-2022/)
-- [Nagpur Today — Mrs India Multimedia title](https://www.nagpurtoday.in/citys-madhumita-gubre-wins-mrs-india-multimedia-title/)
-- [Youngbutterfly directory listing](https://youngbutterfly.in/class/2-stepz-fitness-dance-studio-fitness-with-madhumita-in-nagpur-2/)
-- Competitor and market sources cited inline within each section.
-
-**Verification note:** Google Maps, Instagram, and Justdial block automated page access. Figures such as ratings and follower counts come from search-index snapshots captured during research (July 2026) and should be re-verified by the owner before being quoted on the website.
+`docs/case-study/` holds the original discovery research the design was derived from. It is excluded from deployment and referenced nowhere in the site.

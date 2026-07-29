@@ -29,7 +29,7 @@
   .menu { display: none; }
   .rail__arrows { display: flex; }
   .founder__inner { grid-template-columns: minmax(0, 300px) 1fr; gap: var(--s10); align-items: center; }
-  .founder__portrait { width: 300px; }
+  .founder__portrait, .founder__portrait.ph--media { width: 300px; }
   .founder__figure { justify-items: center; text-align: center; }
   .first__steps { grid-template-columns: repeat(4, 1fr); }
   .card { width: 340px; }

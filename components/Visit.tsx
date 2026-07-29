@@ -1,4 +1,16 @@
-import { waLink, telLink, CONTACT, HAS_WHATSAPP, HAS_PHONE } from "@/lib/config";
+import { MediaPlaceholder, FieldPlaceholder } from "@/components/Placeholder";
+import {
+  waLink,
+  telLink,
+  VERIFIED,
+  STUDIO,
+  HAS_WHATSAPP,
+  HAS_PHONE,
+  HAS_EMAIL,
+  HAS_HOURS,
+  HAS_MAPS_EMBED,
+  PENDING,
+} from "@/lib/config";
 
 const ext = !HAS_WHATSAPP ? { target: "_blank", rel: "noopener" } : {};
 
@@ -20,43 +32,66 @@ export default function Visit() {
           <a className="btn btn--white" href={waLink()} {...ext}>
             Book my trial on WhatsApp
           </a>
-          {HAS_PHONE && (
+          {HAS_PHONE ? (
             <a className="btn btn--ghost-light" href={telLink()}>
               Call the studio
             </a>
+          ) : (
+            <FieldPlaceholder label="Phone number placeholder" icon="portrait" tone="light" />
           )}
-          <a className="btn btn--ghost-light" href={CONTACT.INSTAGRAM} target="_blank" rel="noopener">
+          <a className="btn btn--ghost-light" href={VERIFIED.INSTAGRAM} target="_blank" rel="noopener">
             DM on Instagram
           </a>
         </div>
+
         <address className="visit__address reveal">
           <div>
             <h3>Find us</h3>
             <p>
-              Plot 63, Gubre Bhavan, 2nd Floor,
+              {STUDIO.address.line1}
               <br />
-              Canal Road, Gokulpeth,
+              {STUDIO.address.line2}
               <br />
-              Nagpur 440010 · near Times of India
+              {STUDIO.address.line3}
             </p>
-            <a href={CONTACT.MAPS} target="_blank" rel="noopener">
+            <a href={VERIFIED.MAPS} target="_blank" rel="noopener">
               Get directions ↗
             </a>
           </div>
           <div>
             <h3>Hours</h3>
-            <p>
-              Monday – Saturday
-              <br />
-              Morning &amp; evening batches
-              <br />
-              Message us for today’s timings
+            {HAS_HOURS ? (
+              <p>{PENDING.HOURS}</p>
+            ) : (
+              <p className="visit__pending">
+                <FieldPlaceholder label="Business hours placeholder" icon="clock" tone="light" />
+                <FieldPlaceholder label="Batch timings placeholder" icon="clock" tone="light" />
+              </p>
+            )}
+          </div>
+          <div>
+            <h3>Reach us</h3>
+            <p className="visit__pending">
+              {!HAS_WHATSAPP && (
+                <FieldPlaceholder label="WhatsApp number placeholder" tone="light" />
+              )}
+              {!HAS_EMAIL && <FieldPlaceholder label="Email address placeholder" tone="light" />}
+              <FieldPlaceholder label="Parking information placeholder" tone="light" />
             </p>
-            <a href={CONTACT.INSTAGRAM} target="_blank" rel="noopener">
-              @2stepzfitness ↗
-            </a>
           </div>
         </address>
+
+        {!HAS_MAPS_EMBED && (
+          <div className="visit__map">
+            <MediaPlaceholder
+              label="Google Maps location placeholder"
+              hint="An interactive map of the studio will be embedded here."
+              ratio="16 / 7"
+              icon="map"
+              className="ph--on-dark"
+            />
+          </div>
+        )}
       </div>
     </section>
   );

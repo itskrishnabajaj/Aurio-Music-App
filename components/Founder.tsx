@@ -1,3 +1,4 @@
+import { MediaPlaceholder } from "@/components/Placeholder";
 import { waLink, HAS_WHATSAPP } from "@/lib/config";
 
 const ext = !HAS_WHATSAPP ? { target: "_blank", rel: "noopener" } : {};
@@ -14,10 +15,14 @@ export default function Founder() {
     <section className="founder band" aria-labelledby="founder-title">
       <div className="founder__ring" data-speed="0.06" aria-hidden="true"></div>
       <div className="founder__inner">
-        <figure className="founder__figure reveal">
-          <div className="founder__portrait" aria-hidden="true">
-            <span className="founder__monogram">M</span>
-          </div>
+        <figure className="founder__figure">
+          <MediaPlaceholder
+            label="Founder image placeholder"
+            hint="Final professional portrait will be added here."
+            ratio="4 / 5"
+            icon="portrait"
+            className="ph--on-dark founder__portrait"
+          />
           <figcaption className="founder__caption">Madhumita Gubre · founder, 2Stepz</figcaption>
         </figure>
         <div className="founder__copy section-head--onplum">

@@ -26,10 +26,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
+    siteName: "2Stepz Fitness & Dance Studio",
     title: "2Stepz Fitness & Dance Studio — The best hour of your day",
     description:
       "Zumba, Power Garba, Bokwa & more in Gokulpeth, Nagpur. Rated 4.6★ · Since 2015 · Led by Mrs Fit India 2022.",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "2Stepz Fitness & Dance Studio — The best hour of your day",
+    description:
+      "Nagpur's boutique dance-fitness studio since 2015. Zumba, Power Garba, Bokwa, Pilates & more in Gokulpeth.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {

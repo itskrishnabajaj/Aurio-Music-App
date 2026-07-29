@@ -8,6 +8,7 @@ import Founder from "@/components/Founder";
 import Garba from "@/components/Garba";
 import Voices from "@/components/Voices";
 import Moments from "@/components/Moments";
+import Gallery from "@/components/Gallery";
 import FirstClass from "@/components/FirstClass";
 import Schedule from "@/components/Schedule";
 import Plans from "@/components/Plans";
@@ -33,6 +34,7 @@ export default function Page() {
         <Garba />
         <Voices />
         <Moments />
+        <Gallery />
         <FirstClass />
         <Schedule />
         <Plans />

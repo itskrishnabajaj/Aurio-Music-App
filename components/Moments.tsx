@@ -1,4 +1,4 @@
-import { CONTACT } from "@/lib/config";
+import { VERIFIED } from "@/lib/config";
 
 const ICONS = {
   sticks: (
@@ -103,7 +103,7 @@ export default function Moments() {
 
       <p className="moments__ig reveal">
         Live from the floor →{" "}
-        <a className="link" href={CONTACT.INSTAGRAM} target="_blank" rel="noopener">
+        <a className="link" href={VERIFIED.INSTAGRAM} target="_blank" rel="noopener">
           @2stepzfitness <i aria-hidden="true">↗</i>
         </a>
       </p>
