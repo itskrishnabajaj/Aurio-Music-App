@@ -10,16 +10,21 @@
 @media (min-width: 600px) {
   .manifesto__stats { grid-template-columns: repeat(4, 1fr); }
   .first__steps { grid-template-columns: repeat(2, 1fr); gap: var(--s3); }
-  .plans__grid { grid-template-columns: repeat(3, 1fr); }
-  .plan--star { transform: translateY(-12px); }
-  .plan--star:hover { transform: translateY(-18px); }
   .dock { left: auto; right: var(--s3); width: auto; }
   .dock__trial { flex: 0 0 auto; padding: 0 32px; }
   .schedule__panel { padding: var(--s4); }
   .schedule__row {
-    grid-template-columns: 12px 100px 1fr auto;
+    grid-template-columns: 12px auto 1fr auto;
     grid-template-areas: "hue time what book";
+    row-gap: 4px;
   }
+  .schedule__book { justify-self: end; }
+}
+
+@media (min-width: 900px) {
+  .plans__grid { grid-template-columns: repeat(3, 1fr); }
+  .plan--star { transform: translateY(-12px); }
+  .plan--star:hover { transform: translateY(-18px); }
 }
 
 @media (min-width: 960px) {

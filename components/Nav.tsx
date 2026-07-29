@@ -153,7 +153,7 @@ export default function Nav() {
         role="dialog"
         aria-modal="true"
         aria-label="Site menu"
-        {...(!open && { inert: "" as unknown as boolean })}
+        inert={!open}
       >
         <nav className="menu__links" aria-label="Menu">
           {LINKS.map((l, i) => (

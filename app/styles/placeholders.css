@@ -109,6 +109,7 @@
   white-space: nowrap;
 }
 .ph--field .ph__glyph { width: 15px; height: 15px; opacity: 0.7; }
+.ph--wrap { white-space: normal; text-align: center; border-radius: var(--r-chip); }
 
 /* on the plum and gradient bands the same chip inverts */
 .ph--on-dark {
@@ -175,6 +176,13 @@
 
 .visit__pending { display: flex; flex-wrap: wrap; gap: var(--s1); }
 .visit__map { margin-top: var(--s6); }
+/* styled ahead of the embed so the map lands finished, not raw, on handover */
+.visit__map-frame {
+  display: block; width: 100%; aspect-ratio: 16 / 7;
+  border: 0; border-radius: var(--r-card);
+  box-shadow: var(--shadow-pop);
+  filter: saturate(0.9);
+}
 
 .footer__social { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); }
 .footer__social a {
@@ -183,18 +191,3 @@
   transition: color var(--t-fast) var(--ease-soft);
 }
 .footer__social a:hover { color: var(--tang); }
-
-@media (prefers-reduced-motion: reduce) {
-  .ph--media { transition-duration: 150ms !important; }
-}
-
-/* the timing chip widens the middle column, so narrow screens stack the row */
-.schedule__row {
-  grid-template-columns: 12px 1fr;
-  grid-template-areas:
-    "hue time"
-    ".   what"
-    ".   book";
-  row-gap: 6px;
-}
-.schedule__book { justify-self: start; }

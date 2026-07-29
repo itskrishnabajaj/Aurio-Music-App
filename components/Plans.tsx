@@ -20,7 +20,7 @@ export default function Plans() {
           <h3>Monthly</h3>
           <p className="plan__for">Dip your toes in. Perfect after a trial class you didn’t want to end.</p>
           <p className="plan__price">
-            <FieldPlaceholder label="Pricing placeholder" />
+            <FieldPlaceholder label="Pricing placeholder" wrap />
           </p>
           <ul>
             <li>All group formats included</li>
@@ -40,7 +40,7 @@ export default function Plans() {
           <h3>Quarterly</h3>
           <p className="plan__for">Twelve weeks — exactly how long real transformations take to show.</p>
           <p className="plan__price">
-            <FieldPlaceholder label="Pricing placeholder" />
+            <FieldPlaceholder label="Pricing placeholder" wrap />
           </p>
           <ul>
             <li>All group formats included</li>
@@ -60,7 +60,7 @@ export default function Plans() {
           <h3>Annual</h3>
           <p className="plan__for">For the ones who know this is their place now. The circle’s inner ring.</p>
           <p className="plan__price">
-            <FieldPlaceholder label="Pricing placeholder" />
+            <FieldPlaceholder label="Pricing placeholder" wrap />
           </p>
           <ul>
             <li>Everything in Quarterly</li>

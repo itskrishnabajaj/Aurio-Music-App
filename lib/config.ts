@@ -47,8 +47,6 @@ export const PENDING = {
   /** e.g. "Mon–Sat · 6:00 am – 9:00 pm" */
   HOURS: "",
   PARKING: "",
-  /** External booking or registration system, if the studio uses one */
-  BOOKING_URL: "",
 } as const;
 
 export const HAS_WHATSAPP = /^\d{10,15}$/.test(PENDING.WHATSAPP);
@@ -57,6 +55,7 @@ export const HAS_EMAIL = PENDING.EMAIL.includes("@");
 export const HAS_YOUTUBE = PENDING.YOUTUBE.startsWith("http");
 export const HAS_MAPS_EMBED = PENDING.MAPS_EMBED.startsWith("http");
 export const HAS_HOURS = PENDING.HOURS.length > 0;
+export const HAS_PARKING = PENDING.PARKING.length > 0;
 
 const DEFAULT_MSG = "Hi! I'd like to book a trial class at 2Stepz \u{1F483}";
 

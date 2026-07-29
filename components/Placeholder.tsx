@@ -104,13 +104,18 @@ export function FieldPlaceholder({
   label,
   icon,
   tone,
+  wrap,
 }: {
   label: string;
   icon?: keyof typeof ICONS;
   tone?: "light";
+  /** lets the chip break across lines in narrow columns */
+  wrap?: boolean;
 }) {
   return (
-    <span className={`ph ph--field${tone === "light" ? " ph--on-dark" : ""}`}>
+    <span
+      className={`ph ph--field${tone === "light" ? " ph--on-dark" : ""}${wrap ? " ph--wrap" : ""}`}
+    >
       {icon && <Glyph name={icon} />}
       {label}
     </span>

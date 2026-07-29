@@ -9,6 +9,7 @@ import {
   HAS_EMAIL,
   HAS_HOURS,
   HAS_MAPS_EMBED,
+  HAS_PARKING,
   PENDING,
 } from "@/lib/config";
 
@@ -71,18 +72,35 @@ export default function Visit() {
           </div>
           <div>
             <h3>Reach us</h3>
+            {HAS_EMAIL ? (
+              <p>
+                <a href={`mailto:${PENDING.EMAIL}`}>{PENDING.EMAIL}</a>
+              </p>
+            ) : null}
             <p className="visit__pending">
               {!HAS_WHATSAPP && (
                 <FieldPlaceholder label="WhatsApp number placeholder" tone="light" />
               )}
               {!HAS_EMAIL && <FieldPlaceholder label="Email address placeholder" tone="light" />}
-              <FieldPlaceholder label="Parking information placeholder" tone="light" />
+              {HAS_PARKING ? null : (
+                <FieldPlaceholder label="Parking information placeholder" tone="light" />
+              )}
             </p>
+            {HAS_PARKING && <p>{PENDING.PARKING}</p>}
           </div>
         </address>
 
-        {!HAS_MAPS_EMBED && (
-          <div className="visit__map">
+        <div className="visit__map">
+          {HAS_MAPS_EMBED ? (
+            <iframe
+              className="visit__map-frame"
+              src={PENDING.MAPS_EMBED}
+              title={`Map showing ${STUDIO.name}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          ) : (
             <MediaPlaceholder
               label="Google Maps location placeholder"
               hint="An interactive map of the studio will be embedded here."
@@ -90,8 +108,8 @@ export default function Visit() {
               icon="map"
               className="ph--on-dark"
             />
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </section>
   );

@@ -1,19 +1,25 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import { FieldPlaceholder } from "@/components/Placeholder";
-import { SCHEDULE, waLink, HAS_WHATSAPP, HAS_HOURS } from "@/lib/config";
+import { SCHEDULE, waLink, HAS_WHATSAPP } from "@/lib/config";
 
 const DAYS = Object.keys(SCHEDULE);
 const ext = !HAS_WHATSAPP ? { target: "_blank", rel: "noopener" } : {};
 
-export default function Schedule() {
-  const [day, setDay] = useState(DAYS[0]);
-  const tabsRef = useRef<HTMLDivElement>(null);
+/* Today's weekday as an external store: the server snapshot is Monday (stable
+   markup), the client snapshot is the real day. Reading it this way avoids
+   both a hydration mismatch and a cascading render from correcting state in
+   an effect. */
+const subscribeDay = () => () => {};
+const getDaySnapshot = () => DAYS[(new Date().getDay() + 6) % 7];
+const getDayServerSnapshot = () => DAYS[0];
 
-  useEffect(() => {
-    setDay(DAYS[(new Date().getDay() + 6) % 7]);
-  }, []);
+export default function Schedule() {
+  const today = useSyncExternalStore(subscribeDay, getDaySnapshot, getDayServerSnapshot);
+  const [picked, setPicked] = useState<string | null>(null);
+  const day = picked ?? today;
+  const tabsRef = useRef<HTMLDivElement>(null);
 
   const rows = SCHEDULE[day];
   const index = DAYS.indexOf(day);
@@ -30,7 +36,7 @@ export default function Schedule() {
     if (next === undefined) return;
     e.preventDefault();
     const target = DAYS[(next + DAYS.length) % DAYS.length];
-    setDay(target);
+    setPicked(target);
     requestAnimationFrame(() => {
       tabsRef.current
         ?.querySelector<HTMLButtonElement>(`[data-day="${target}"]`)
@@ -64,7 +70,7 @@ export default function Schedule() {
               aria-selected={d === day}
               aria-controls="day-panel"
               tabIndex={d === day ? 0 : -1}
-              onClick={() => setDay(d)}
+              onClick={() => setPicked(d)}
             >
               {d}
             </button>
@@ -86,7 +92,7 @@ export default function Schedule() {
               <div className="schedule__row" key={`${day}-${r.name}-${i}`}>
                 <span className={`schedule__hue schedule__hue--${r.hue}`} aria-hidden="true"></span>
                 <span className="schedule__time">
-                  {HAS_HOURS ? r.time : <FieldPlaceholder label="Batch timing" icon="clock" />}
+                  {r.time ?? <FieldPlaceholder label="Batch timing" icon="clock" />}
                 </span>
                 <span className="schedule__what">
                   <b>{r.name}</b>

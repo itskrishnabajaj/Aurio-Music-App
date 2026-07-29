@@ -1,6 +1,6 @@
 "use client";
 
-import { Children, useCallback, useEffect, useRef, useState } from "react";
+import { Children, useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 type Props = {
   label: string;
@@ -29,13 +29,31 @@ const FLICK = 0.45;         // px/ms that counts as a deliberate flick
 const AXIS_LOCK = 8;        // px of travel before we commit to an axis
 const DRAG_SLOP = 6;        // px of travel that turns a tap into a drag
 
+/* Motion preference as an external store. The server snapshot reports
+   "reduced", so the markup ships as the native scroll-snap fallback and is
+   usable before (and without) hydration; the client then reports the real
+   value, and re-reports it if the user changes the OS setting mid-session. */
+const MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const subscribeMotion = (onChange: () => void) => {
+  const mq = window.matchMedia(MOTION_QUERY);
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+};
+const getMotionSnapshot = () => window.matchMedia(MOTION_QUERY).matches;
+const getMotionServerSnapshot = () => true;
+
 export default function Rail({ label, children }: Props) {
   const slides = Children.toArray(children);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
-  const [enhanced, setEnhanced] = useState(false);
   const [dragging, setDragging] = useState(false);
+  const prefersReducedMotion = useSyncExternalStore(
+    subscribeMotion,
+    getMotionSnapshot,
+    getMotionServerSnapshot
+  );
+  const enhanced = !prefersReducedMotion;
 
   const sim = useRef({
     x: 0,
@@ -130,14 +148,6 @@ export default function Rail({ label, children }: Props) {
     },
     [apply, run]
   );
-
-  /* ---------- enhance after hydration ---------- */
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
-    measure();
-    setEnhanced(true);
-  }, [measure]);
 
   useEffect(() => {
     if (!enhanced) return;

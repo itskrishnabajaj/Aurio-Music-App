@@ -16,7 +16,7 @@ Deploy: push to Vercel — zero configuration required.
 
 The site is complete and branded. Everything below is information the studio has not supplied yet; each one currently renders as a labelled placeholder in its final position, so nothing needs redesigning when the real content arrives.
 
-Open **`lib/config.ts`** and fill in the `PENDING` block — the placeholders disappear automatically as each value is added.
+Open **`lib/config.ts`** and fill in the `PENDING` block. Each placeholder is replaced by the real content as soon as its value is supplied — this is covered by a config-contract test that fills every field with a fixture and asserts both directions (real content appears, placeholder disappears, and placeholders return when the value is removed).
 
 | # | Needed from the studio | Where it appears |
 |---|------------------------|------------------|
@@ -32,7 +32,6 @@ Open **`lib/config.ts`** and fill in the `PENDING` block — the placeholders di
 | 10 | Google Maps embed URL | Visit section |
 | 11 | YouTube channel | Footer |
 | 12 | Parking information | Visit section |
-| 13 | External booking/registration link, if one is used | Optional, `PENDING.BOOKING_URL` |
 
 Already live and verified: studio name, address, founder story and awards, class formats, timeline milestones, 4.6★ / 88+ review count, Instagram, Facebook and Justdial links.
 
@@ -52,6 +51,8 @@ Already live and verified: studio name, address, founder story and awards, class
 | `sections.css` | Each section in narrative order |
 | `placeholders.css` | Placeholder surfaces and the layouts that host them |
 | `responsive.css` | Breakpoints and `prefers-reduced-motion` |
+
+Quality gates: `npm run lint` (ESLint flat config, `next/core-web-vitals` + `next/typescript`), `npx tsc --noEmit`, and a warning-free `npm run build`.
 
 **Components** are React Server Components by default. Only four ship JavaScript: `Nav` (menu, focus trap, shrink), `Rail` (carousel physics), `Schedule` (day tabs), and `Fx` (scroll orchestration). First Load JS: **109 kB**.
 

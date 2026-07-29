@@ -1,5 +1,5 @@
 import { FieldPlaceholder } from "@/components/Placeholder";
-import { VERIFIED, HAS_YOUTUBE } from "@/lib/config";
+import { VERIFIED, HAS_YOUTUBE, PENDING } from "@/lib/config";
 
 export default function Footer() {
   return (
@@ -23,7 +23,13 @@ export default function Footer() {
           <a href={VERIFIED.FACEBOOK} target="_blank" rel="noopener">
             Facebook ↗
           </a>
-          {!HAS_YOUTUBE && <FieldPlaceholder label="YouTube channel placeholder" tone="light" />}
+          {HAS_YOUTUBE ? (
+            <a href={PENDING.YOUTUBE} target="_blank" rel="noopener">
+              YouTube ↗
+            </a>
+          ) : (
+            <FieldPlaceholder label="YouTube channel placeholder" tone="light" />
+          )}
         </div>
         <p className="footer__meta">
           Gokulpeth, Nagpur · est. 2015 · rated 4.6★ by our members

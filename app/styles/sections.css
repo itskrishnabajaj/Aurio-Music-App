@@ -561,13 +561,16 @@
 }
 .schedule__list { min-height: 232px; }
 .schedule__list:focus-visible { outline: 2px solid var(--rasp); outline-offset: 6px; border-radius: var(--r-sm); }
+/* the batch-timing chip is wide, so narrow screens stack the row and the
+   enquiry link drops to its own line; ≥600px returns to a single row */
 .schedule__row {
   display: grid;
-  grid-template-columns: 12px auto 1fr;
+  grid-template-columns: 12px 1fr;
   grid-template-areas:
-    "hue time book"
-    ".   what what";
-  column-gap: var(--s2); row-gap: 4px;
+    "hue time"
+    ".   what"
+    ".   book";
+  column-gap: var(--s2); row-gap: 6px;
   align-items: center;
   padding: var(--s2) var(--s1);
   border-bottom: 1.5px solid rgba(42, 26, 51, 0.08);
@@ -589,7 +592,7 @@
 .schedule__what small { color: var(--ink-soft); font-size: 0.82rem; }
 .schedule__what small::before { content: "· "; }
 .schedule__book {
-  grid-area: book; justify-self: end;
+  grid-area: book; justify-self: start;
   display: inline-flex; align-items: center; min-height: 44px;
   font-size: 0.88rem; font-weight: 800; text-decoration: none;
   color: var(--rasp-deep); white-space: nowrap;
