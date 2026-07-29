@@ -2,15 +2,24 @@ import { waLink, HAS_WHATSAPP } from "@/lib/config";
 
 const ext = !HAS_WHATSAPP ? { target: "_blank", rel: "noopener" } : {};
 
+const ACHIEVEMENTS = [
+  ["Mrs Fit India", "2022"],
+  ["Mrs India Multimedia", "2017"],
+  ["Fitness Influencer", "2018"],
+  ["Founder & lead instructor", "since 2015"],
+];
+
 export default function Founder() {
   return (
     <section className="founder band" aria-labelledby="founder-title">
       <div className="founder__ring" data-speed="0.06" aria-hidden="true"></div>
       <div className="founder__inner">
-        <div className="founder__portrait reveal" aria-hidden="true">
-          <span className="founder__monogram">M</span>
-          <span className="founder__caption">Madhumita Gubre · founder, 2Stepz</span>
-        </div>
+        <figure className="founder__figure reveal">
+          <div className="founder__portrait" aria-hidden="true">
+            <span className="founder__monogram">M</span>
+          </div>
+          <figcaption className="founder__caption">Madhumita Gubre · founder, 2Stepz</figcaption>
+        </figure>
         <div className="founder__copy section-head--onplum">
           <p className="section-head__eyebrow reveal">The woman leading the room</p>
           <h2 className="section-head__title reveal" id="founder-title">
@@ -22,18 +31,11 @@ export default function Founder() {
             thousand classes and a national crown later, the belief has a waiting room.
           </p>
           <ul className="founder__badges">
-            <li className="reveal">
-              Mrs Fit India <b>2022</b>
-            </li>
-            <li className="reveal">
-              Mrs India Multimedia <b>2017</b>
-            </li>
-            <li className="reveal">
-              Fitness Influencer <b>2018</b>
-            </li>
-            <li className="reveal">
-              Founder &amp; lead instructor <b>since 2015</b>
-            </li>
+            {ACHIEVEMENTS.map(([title, year]) => (
+              <li className="reveal" key={title}>
+                {title} <b>{year}</b>
+              </li>
+            ))}
           </ul>
           <blockquote className="founder__quote reveal">
             “Members don’t review our equipment. They review how the hour made them feel.”

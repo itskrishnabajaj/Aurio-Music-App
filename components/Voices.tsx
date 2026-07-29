@@ -1,3 +1,4 @@
+import Rail from "@/components/Rail";
 import { CONTACT } from "@/lib/config";
 
 const QUOTES = [
@@ -19,7 +20,7 @@ export default function Voices() {
           Drawn from a decade of public reviews · rated <b>4.6 / 5</b>
         </p>
       </header>
-      <div className="rail" data-rail tabIndex={0} aria-label="Member reviews, horizontally scrollable">
+      <Rail label="Member reviews">
         {QUOTES.map((q) => (
           <figure className="voice" key={q.slice(0, 24)}>
             <div className="voice__stars" aria-label="5 stars">
@@ -29,10 +30,7 @@ export default function Voices() {
             <figcaption>Member review · Justdial</figcaption>
           </figure>
         ))}
-      </div>
-      <div className="rail-progress" aria-hidden="true">
-        <span data-rail-bar></span>
-      </div>
+      </Rail>
       <p className="voices__link reveal">
         <a href={CONTACT.JUSTDIAL} target="_blank" rel="noopener">
           Read all 88+ reviews ↗

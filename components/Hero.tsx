@@ -7,15 +7,21 @@ export default function Hero() {
     <section className="hero" id="top" aria-label="Welcome">
       <div className="hero__blob hero__blob--a" aria-hidden="true"></div>
       <div className="hero__blob hero__blob--b" aria-hidden="true"></div>
+      <div className="hero__blob hero__blob--c" aria-hidden="true"></div>
       <div className="hero__ring" data-speed="0.05" aria-hidden="true"></div>
       <div className="hero__dot hero__dot--a" data-speed="0.09" aria-hidden="true"></div>
       <div className="hero__dot hero__dot--b" data-speed="0.12" aria-hidden="true"></div>
       <div className="hero__dot hero__dot--c" data-speed="0.07" aria-hidden="true"></div>
 
       <div className="hero__inner">
-        <p className="reveal-line">
+        <p className="reveal-line hero__eyebrow-line">
           <span>
-            <span className="hero__eyebrow">Gokulpeth · Nagpur · since 2015</span>
+            <span className="hero__eyebrow">
+              <span>
+                <b>Gokulpeth · Nagpur</b>
+                <i>Since 2015</i>
+              </span>
+            </span>
           </span>
         </p>
         <h1 className="hero__title">

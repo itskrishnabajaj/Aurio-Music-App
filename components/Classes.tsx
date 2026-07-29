@@ -1,3 +1,4 @@
+import Rail from "@/components/Rail";
 import { waLink, HAS_WHATSAPP } from "@/lib/config";
 
 const ext = !HAS_WHATSAPP ? { target: "_blank", rel: "noopener" } : {};
@@ -83,7 +84,7 @@ export default function Classes() {
           Swipe through — every format welcomes complete beginners.
         </p>
       </header>
-      <div className="rail" data-rail tabIndex={0} aria-label="Class formats, horizontally scrollable">
+      <Rail label="Class formats">
         {FORMATS.map((f) => (
           <article className={`card card--${f.key}`} key={f.key}>
             <div className="card__art" data-letter={f.letter}>
@@ -101,15 +102,12 @@ export default function Classes() {
                 ))}
               </div>
               <a className="card__cta" href={waLink(f.msg)} {...ext}>
-                {f.cta} →
+                {f.cta} <i aria-hidden="true">→</i>
               </a>
             </div>
           </article>
         ))}
-      </div>
-      <div className="rail-progress" aria-hidden="true">
-        <span data-rail-bar></span>
-      </div>
+      </Rail>
     </section>
   );
 }
