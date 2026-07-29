@@ -21,6 +21,7 @@ const MILESTONES = [
     title: "Anniversary Bashes",
     copy: "Every August the family gets bigger, the cake gets larger, the playlist gets louder.",
     accent: "var(--rasp)",
+    ink: "var(--rasp-deep)",
     icon: ICONS.cake,
   },
   {
@@ -29,6 +30,7 @@ const MILESTONES = [
     title: "Power Garba Masterclass",
     copy: "Format founder Satyajit Vora brought his masterclass to our floor.",
     accent: "var(--violet)",
+    ink: "var(--violet-deep)",
     icon: ICONS.sticks,
   },
   {
@@ -37,6 +39,7 @@ const MILESTONES = [
     title: "Mrs Fit India",
     copy: "Our founder crowned on a national stage — the whole studio celebrated for a week.",
     accent: "#e0397a",
+    ink: "#b81f5c",
     icon: ICONS.crown,
   },
   {
@@ -45,6 +48,7 @@ const MILESTONES = [
     title: "The 46°C Workout",
     copy: "Nagpur’s hottest week. The batch showed up anyway. The reel went everywhere.",
     accent: "var(--tang)",
+    ink: "var(--tang-deep)",
     icon: ICONS.sun,
   },
   {
@@ -53,6 +57,7 @@ const MILESTONES = [
     title: "Garba Nights",
     copy: "The studio floor becomes a festival ground — members, families, dandiya and drums.",
     accent: "var(--green)",
+    ink: "var(--green-deep)",
     icon: ICONS.star,
   },
 ];
@@ -78,10 +83,13 @@ export default function Moments() {
               className={`milestone milestone--${i % 2 === 0 ? "left" : "right"}`}
               key={m.key}
               data-milestone
-              style={{ "--accent": m.accent } as React.CSSProperties}
+              style={{ "--accent": m.accent, "--accent-ink": m.ink } as React.CSSProperties}
             >
               <span className="milestone__marker" aria-hidden="true">
                 <svg viewBox="0 0 24 24">{m.icon}</svg>
+              </span>
+              <span className="milestone__aside" aria-hidden="true">
+                {m.year}
               </span>
               <div className="milestone__card">
                 <span className="milestone__year">{m.year}</span>
@@ -95,8 +103,8 @@ export default function Moments() {
 
       <p className="moments__ig reveal">
         Live from the floor →{" "}
-        <a href={CONTACT.INSTAGRAM} target="_blank" rel="noopener">
-          @2stepzfitness ↗
+        <a className="link" href={CONTACT.INSTAGRAM} target="_blank" rel="noopener">
+          @2stepzfitness <i aria-hidden="true">↗</i>
         </a>
       </p>
     </section>

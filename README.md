@@ -17,7 +17,19 @@ npm run build    # production build (static prerender)
 
 Deploy: push to Vercel — zero config needed.
 
-**Design system:** warm-white ground with blush/peach/lilac/mint section washes, raspberry→tangerine signature gradient, deep-plum ink, 8px spacing scale, curved section bands, floating gradient blobs, Fraunces + Manrope. **Experience:** kinetic hero, tilted gradient marquee, scroll-fill manifesto, colorful stat tiles, snap-scroll class/testimonial rails, warm founder band, rotating Power Garba disc, moments wall, day-tabbed schedule, membership tiers, animated FAQ, gradient finale, and a sticky WhatsApp/call/trial dock. All motion is transform/opacity-only and `prefers-reduced-motion` aware.
+**Stylesheet architecture** — `app/globals.css` is an entry point that imports `app/styles/` in cascade order:
+
+| File | Holds |
+|------|-------|
+| `tokens.css` | Every colour, type size, line-height, space, radius, shadow and duration. Nothing downstream introduces a raw value. |
+| `base.css` | Reset, document, a11y primitives, the ambient light layer, `.band` rhythm |
+| `components.css` | Buttons, nav, menu, carousel, dock, section heads |
+| `sections.css` | Each section in narrative order |
+| `responsive.css` | Breakpoints and `prefers-reduced-motion` |
+
+**Design system:** warm-white ground with blush/peach/lilac/mint washes, deep-plum ink, an 8px spacing scale, curved bands, Fraunces + Manrope. Two gradients by design: `--grad` carries text (both stops dark enough for WCAG AA), `--grad-warm` keeps the pink→amber signature for decorative surfaces that never carry text.
+
+**Experience:** kinetic hero over a scroll-linked ambient light layer, a physics carousel (momentum, damped-spring snap, rubber-band edges, axis-locked so it never eats page scroll, native fallback without JS), scroll-fill manifesto, animated stat tiles, an illuminating vertical timeline, day-tabbed schedule, membership tiers, and a sticky WhatsApp/call/trial dock. All motion is transform/opacity-only, GPU-composited and `prefers-reduced-motion` aware.
 
 **Before launch, the owner must update** `lib/config.ts`:
 

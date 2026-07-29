@@ -32,8 +32,8 @@ export default function Voices() {
         ))}
       </Rail>
       <p className="voices__link reveal">
-        <a href={CONTACT.JUSTDIAL} target="_blank" rel="noopener">
-          Read all 88+ reviews ↗
+        <a className="link" href={CONTACT.JUSTDIAL} target="_blank" rel="noopener">
+          Read all 88+ reviews <i aria-hidden="true">↗</i>
         </a>
       </p>
     </section>

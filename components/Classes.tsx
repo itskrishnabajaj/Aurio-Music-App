@@ -101,7 +101,7 @@ export default function Classes() {
                   <span key={t}>{t}</span>
                 ))}
               </div>
-              <a className="card__cta" href={waLink(f.msg)} {...ext}>
+              <a className="link" href={waLink(f.msg)} {...ext}>
                 {f.cta} <i aria-hidden="true">→</i>
               </a>
             </div>

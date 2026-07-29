@@ -1,0 +1,89 @@
+/* ============================================================
+   Breakpoints and motion preferences — mobile is the base layer,
+   everything below is an adaptation upward.
+   ============================================================ */
+
+@media (max-width: 400px) {
+  .hero__cta .btn { flex: 1 1 100%; }
+}
+
+@media (min-width: 600px) {
+  .manifesto__stats { grid-template-columns: repeat(4, 1fr); }
+  .first__steps { grid-template-columns: repeat(2, 1fr); gap: var(--s3); }
+  .plans__grid { grid-template-columns: repeat(3, 1fr); }
+  .plan--star { transform: translateY(-12px); }
+  .plan--star:hover { transform: translateY(-18px); }
+  .dock { left: auto; right: var(--s3); width: auto; }
+  .dock__trial { flex: 0 0 auto; padding: 0 32px; }
+  .schedule__panel { padding: var(--s4); }
+  .schedule__row {
+    grid-template-columns: 12px 100px 1fr auto;
+    grid-template-areas: "hue time what book";
+  }
+}
+
+@media (min-width: 960px) {
+  .nav__links { display: flex; }
+  .nav__actions .btn { display: inline-flex; }
+  .nav__burger { display: none; }
+  .menu { display: none; }
+  .rail__arrows { display: flex; }
+  .founder__inner { grid-template-columns: minmax(0, 300px) 1fr; gap: var(--s10); align-items: center; }
+  .founder__portrait { width: 300px; }
+  .founder__figure { justify-items: center; text-align: center; }
+  .first__steps { grid-template-columns: repeat(4, 1fr); }
+  .card { width: 340px; }
+  .voice { width: 420px; }
+  .garba__disc { right: -16vmin; opacity: 0.6; }
+  .hero__dot--a { right: 10vw; top: 24vh; }
+  .hero__dot--b { right: 26vw; top: 62vh; }
+  .hero__dot--c { display: block; right: 6vw; bottom: 18vh; }
+
+  /* centred spine, alternating milestones, mirrored year labels */
+  .timeline { --tl-gap: 48px; }
+  .timeline__spine { left: 50%; transform: translateX(-50%); }
+  .milestone { width: calc(50% - var(--tl-gap)); padding-left: 0; padding-bottom: var(--s10); }
+  .milestone--left { margin-right: auto; }
+  .milestone--right { margin-left: auto; }
+  .milestone--left .milestone__marker { left: auto; right: calc((var(--tl-gap) + (var(--tl-marker) / 2)) * -1); }
+  .milestone--right .milestone__marker { left: calc((var(--tl-gap) + (var(--tl-marker) / 2)) * -1); }
+  .milestone--left .milestone__card { transform-origin: right center; }
+  .milestone__aside {
+    display: block; position: absolute; top: 4px;
+    white-space: nowrap;
+  }
+  .milestone--left .milestone__aside { left: calc(100% + var(--tl-gap) + var(--tl-marker)); }
+  .milestone--right .milestone__aside { right: calc(100% + var(--tl-gap) + var(--tl-marker)); text-align: right; }
+}
+
+@media (min-width: 1600px) {
+  :root { --wrap: 1320px; }
+}
+
+/* ------------------------------------------------------------
+   Reduced motion. Entrances and ambient loops stop, but state
+   changes keep a short fade so the interface still feels
+   responsive rather than instantaneous.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .reveal, .reveal-line > span { opacity: 1; transform: none; }
+  .milestone, .milestone.is-in { opacity: 1; transform: none; }
+  .timeline__spine::after { transform: scaleY(1); }
+  .rail--physics .rail__slide:not(.is-active) { opacity: 1; transform: none; }
+  .ambient { --journey: 0.3; }
+
+  .fill-line, .fill-line--accent {
+    background: none; -webkit-background-clip: initial; background-clip: initial;
+    color: var(--ink);
+  }
+  .fill-line--accent { color: var(--rasp); }
+}

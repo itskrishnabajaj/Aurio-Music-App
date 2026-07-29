@@ -35,6 +35,14 @@ export default function Fx() {
 
     requestAnimationFrame(() => document.body.classList.add("is-loaded"));
 
+    /* ---------- journey: one scroll value the whole page reads ---------- */
+    const root = document.documentElement;
+    onScrollRaf(() => {
+      const max = root.scrollHeight - window.innerHeight;
+      const p = max > 0 ? window.scrollY / max : 0;
+      root.style.setProperty("--journey", Math.min(1, Math.max(0, p)).toFixed(4));
+    });
+
     /* ---------- section reveals ---------- */
     const revealObserver = new IntersectionObserver(
       (entries) => {

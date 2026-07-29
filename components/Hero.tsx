@@ -58,19 +58,11 @@ export default function Hero() {
             <dl className="hero__proof">
               <div>
                 <dt>★ 4.6</dt>
-                <dd>88+ reviews</dd>
+                <dd>from 88+ reviews</dd>
               </div>
               <div>
-                <dt>10 yrs</dt>
-                <dd>of classes</dd>
-              </div>
-              <div>
-                <dt>10+</dt>
-                <dd>formats</dd>
-              </div>
-              <div>
-                <dt>1</dt>
-                <dd>big family</dd>
+                <dt>10 years</dt>
+                <dd>in Gokulpeth</dd>
               </div>
             </dl>
           </span>

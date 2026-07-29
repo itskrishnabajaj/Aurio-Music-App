@@ -1,0 +1,92 @@
+/* ============================================================
+   Design tokens — the single source of truth for the system.
+   Nothing below this file should introduce a raw colour, a
+   duration, or a spacing value that isn't defined here.
+   ============================================================ */
+
+:root {
+  /* ---------- colour ---------- */
+  --ink: #2a1a33;
+  --ink-soft: rgba(42, 26, 51, 0.68);
+  --ink-mute: rgba(42, 26, 51, 0.34);
+  --ink-faint: rgba(42, 26, 51, 0.13);
+  --ground: #fffbf4;
+  --blush: #ffe9f0;
+  --peach: #fff1de;
+  --lilac: #f2edfb;
+  --mint: #e9f6ee;
+  --plum: #341f42;
+  --plum-deep: #241531;
+  --rasp: #f42c6e;
+  --rasp-deep: #c4104f;
+  --tang: #ff9e1f;
+  --tang-deep: #9c5407;
+  --violet: #7a4dd8;
+  --violet-deep: #5b32ad;
+  --green: #2f9c6a;
+  --green-deep: #1f7a51;
+  --wa: #1fae54;
+
+  /* --grad carries text (as a fill, or as white labels on top of it), so both
+     stops stay dark enough for WCAG AA. --grad-warm keeps the pink-to-amber
+     signature for decorative surfaces that never carry text. */
+  --grad: linear-gradient(100deg, #e01a66, #c4104f);
+  --grad-warm: linear-gradient(100deg, var(--rasp), var(--tang));
+  --grad-v: linear-gradient(180deg, var(--rasp), var(--tang));
+
+  /* ---------- type ---------- */
+  --font-d: var(--font-display), Georgia, serif;
+  --font-b: var(--font-body), system-ui, sans-serif;
+
+  --size-hero: clamp(2.9rem, 12.5vw, 7.5rem);
+  --size-title: clamp(2.1rem, 7.6vw, 4.4rem);
+  --size-big: clamp(1.45rem, 5.2vw, 2.75rem);
+  --size-card: clamp(1.35rem, 4.4vw, 1.6rem);
+  --size-body: 1.0625rem;
+  --size-small: 0.94rem;
+  --size-micro: 0.76rem;
+
+  /* one line-height per typographic role — no drift */
+  --lh-display: 0.98;
+  --lh-title: 1.06;
+  --lh-card: 1.15;
+  --lh-quote: 1.45;
+  --lh-body: 1.7;
+
+  --track-eyebrow: 0.2em;
+  --measure: 34rem;
+  --measure-tight: 28rem;
+
+  /* ---------- 8pt spacing ---------- */
+  --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 32px; --s5: 40px;
+  --s6: 48px; --s7: 56px; --s8: 64px; --s10: 80px; --s12: 96px; --s16: 128px;
+
+  --pad-x: clamp(20px, 5vw, 64px);
+  /* asymmetric: a section opens with more air than it closes with */
+  --sec-top: clamp(88px, 14vw, 152px);
+  --sec-bottom: clamp(72px, 11vw, 120px);
+  --wrap: 1200px;
+  --curve: clamp(28px, 6vw, 64px);
+
+  /* ---------- shape ---------- */
+  --r-sm: 12px;
+  --r-chip: 16px;
+  --r-card: 28px;
+
+  /* one elevation ramp */
+  --shadow-card: 0 20px 44px -24px rgba(42, 26, 51, 0.22);
+  --shadow-pop: 0 32px 64px -28px rgba(42, 26, 51, 0.3);
+  --shadow-rasp: 0 16px 32px -14px rgba(244, 44, 110, 0.45);
+
+  /* ---------- motion ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 180ms;
+  --t-base: 420ms;
+  --t-slow: 720ms;
+  --stagger: 80ms;
+
+  /* ---------- runtime ---------- */
+  --dock-h: 0px;
+  --journey: 0;
+}

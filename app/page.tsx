@@ -22,6 +22,7 @@ export default function Page() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+      <div className="ambient" aria-hidden="true" />
       <Nav />
       <main id="main">
         <Hero />
